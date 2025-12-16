@@ -1,0 +1,7 @@
+onlyBuiltDependencies:
+  - contentlayer2
+  - esbuild
+  - protobufjs
+  - rome
+  - sharp
+  - unrs-resolver

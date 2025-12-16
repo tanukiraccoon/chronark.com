@@ -1,5 +1,6 @@
 import { Redis } from "@upstash/redis";
 import { NextRequest, NextResponse } from "next/server";
+import {ipAddress} from "@vercel/functions";
 
 const redis = Redis.fromEnv();
 export const config = {
@@ -22,7 +23,7 @@ export default async function incr(req: NextRequest): Promise<NextResponse> {
   if (!slug) {
     return new NextResponse("Slug not found", { status: 400 });
   }
-  const ip = req.ip;
+  const ip = ipAddress(req);
   if (ip) {
     // Hash the IP in order to not store it directly in your db.
     const buf = await crypto.subtle.digest(
